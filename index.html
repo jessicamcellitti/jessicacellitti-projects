@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jessica Cellitti — Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111;
+  --gray: #555;
+  --gray-light: #888;
+  --light: #f5f5f3;
+  --border: #e8e8e6;
+  --white: #fff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+}
+
+.nav-logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--black);
+  text-decoration: none; letter-spacing: -0.01em;
+}
+
+.nav-back {
+  font-size: 13px; color: var(--gray); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--black); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  padding: 140px 48px 80px;
+  max-width: 1100px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-label {
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gray-light); font-weight: 600; margin-bottom: 20px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.hero-h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.08; letter-spacing: -0.02em;
+  color: var(--black); margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.hero-h1 em {
+  font-style: italic; color: var(--gray);
+}
+
+.hero-sub {
+  font-size: 18px; color: var(--gray); line-height: 1.7;
+  max-width: 540px; font-weight: 300;
+}
+
+/* ── PROJECTS GRID ───────────────────────────────────────── */
+.projects-section {
+  padding: 80px 48px 120px;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.section-label {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gray); font-weight: 600; margin-bottom: 40px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--border);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+}
+
+/* ── PROJECT CARD ─────────────────────────────────────────── */
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 36px;
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--black);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover { background: var(--light); }
+.project-card:hover::after { transform: scaleX(1); }
+
+.card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 24px;
+}
+
+.card-company-logo {
+  height: 22px; width: auto;
+  filter: grayscale(1) brightness(0);
+  opacity: 0.7;
+}
+
+.card-type {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray); font-weight: 600; font-family: 'DM Sans', sans-serif;
+  background: var(--light); border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 20px;
+}
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; line-height: 1.2; color: var(--black);
+  margin-bottom: 12px; font-weight: 400; letter-spacing: -0.01em;
+}
+
+.card-desc {
+  font-size: 14px; line-height: 1.7; color: var(--gray);
+  margin-bottom: 28px; flex: 1; font-weight: 300;
+}
+
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.card-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+.card-tag {
+  font-size: 11px; color: var(--gray);
+  padding: 3px 8px; border-radius: 4px;
+  background: var(--border);
+}
+
+.card-arrow {
+  font-size: 18px; color: var(--black);
+  transition: transform 0.2s;
+}
+.project-card:hover .card-arrow { transform: translate(3px, -3px); }
+
+/* ── PLACEHOLDER CARD ─────────────────────────────────────── */
+.project-card.placeholder {
+  border-style: dashed; cursor: default;
+  background: transparent;
+}
+.project-card.placeholder:hover { background: transparent; }
+.project-card.placeholder::after { display: none; }
+
+.placeholder-inner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 200px; text-align: center;
+}
+
+.placeholder-icon {
+  font-size: 28px; margin-bottom: 12px; opacity: 0.25;
+}
+
+.placeholder-text {
+  font-size: 13px; color: var(--gray); opacity: 0.5;
+  font-style: italic;
+}
+
+
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .projects-section { padding: 48px 24px 80px; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://www.jessicacellitti.com">Jessica Cellitti</a>
+  <a class="nav-back" href="https://www.jessicacellitti.com">← Back to portfolio</a>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="hero-label">Projects</div>
+    <h1 class="hero-h1">Work samples &amp; <em>applied projects</em></h1>
+    <p class="hero-sub">Hands-on deliverables built for real job applications. Each project reflects how I approach learning design, customer education, and learning strategy for specific companies and roles.</p>
+  </div>
+
+  <div class="projects-section">
+    <div class="section-label">All projects</div>
+    <div class="projects-grid">
+
+      <!-- RAIN CARD -->
+      <a class="project-card" href="/rain-onboarding">
+        <div class="card-top">
+          <img class="card-company-logo" src="data:image/jpeg;base64,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" alt="Rain">
+          <span class="card-type">Onboarding Course</span>
+        </div>
+        <div class="card-title">Rain — CX Onboarding Course</div>
+        <div class="card-desc">A seven-module interactive course built for Rain's customer experience team. Covers stablecoin infrastructure, card programs, partner use cases, and CX essentials — with AI-powered reflection feedback.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Fintech</span>
+            <span class="card-tag">CX</span>
+            <span class="card-tag">Interactive</span>
+          </div>
+          <span class="card-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- PLACEHOLDER 1 -->
+      <div class="project-card placeholder">
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">＋</div>
+          <div class="placeholder-text">Next project coming soon</div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER 2 -->
+      <div class="project-card placeholder">
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">＋</div>
+          <div class="placeholder-text">Next project coming soon</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+
+
+</body>
+</html>
