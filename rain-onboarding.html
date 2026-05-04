@@ -627,15 +627,15 @@ const modules = [
         heading: "Rain's mission",
         content: [
           { type: "prose", text: "Rain builds infrastructure that makes digital assets — primarily stablecoins — work in the real world. The goal is simple: anyone holding digital dollars should be able to spend them anywhere, instantly, without understanding the complexity in the background." },
-          { type: "prose", text: "Rain is a <strong>Visa Principal Member</strong>. That means Rain holds direct network membership with Visa and can issue cards directly — without relying on a third-party bank. This is a significant distinction you will hear partners and customers reference." },
-          { type: "callout", variant: "blue", label: "Key fact for CX teams", body: "Rain is a Visa Principal Member. Most card program providers rely on a third-party bank to hold the Visa membership. Rain holds it directly — meaning faster programs, fewer intermediaries, and more flexibility for partners." },
+          { type: "prose", text: "Rain is both a <strong>Visa Principal Member</strong> and a <strong>Mastercard Principal Member</strong>. That means Rain holds direct network membership with both networks and can issue cards directly — without relying on a third-party bank. Rain is the only stablecoin infrastructure provider with dual Principal Membership across both major global card networks." },
+          { type: "callout", variant: "blue", label: "Key fact for CX teams", body: "Rain holds Principal Membership with both Visa and Mastercard. Most card program providers rely on a third-party bank to hold network membership. Rain holds both directly — meaning faster programs, fewer intermediaries, and more flexibility for partners." },
         ]
       },
       {
         heading: "What Rain does",
         content: [
-          { type: "prose", text: "Rain provides end-to-end infrastructure that lets businesses (called <strong>partners</strong>) launch branded card programs powered by stablecoins. These programs are used by fintechs, neobanks, remittance platforms, payroll providers, and others who want to give their customers a way to spend digital assets on the Visa network." },
-          { type: "prose", text: "From the end user's perspective, they simply have a card that works anywhere Visa is accepted. The stablecoin infrastructure is invisible." },
+          { type: "prose", text: "Rain provides end-to-end infrastructure that lets businesses (called <strong>partners</strong>) launch branded card programs powered by stablecoins. These programs are used by fintechs, neobanks, remittance platforms, payroll providers, and others who want to give their customers a way to spend digital assets on the Visa and Mastercard networks." },
+          { type: "prose", text: "From the end user's perspective, they simply have a card that works anywhere Visa or Mastercard is accepted. The stablecoin infrastructure is invisible." },
         ]
       },
       {
@@ -654,7 +654,7 @@ const modules = [
           { type: "bullets", items: [
             "Invisible infrastructure — the technology should disappear for the user",
             "Global reach — the same program should work across markets without rebuilding",
-            "Daily settlement — Rain settles with Visa every day, including weekends and holidays",
+            "Daily settlement — Rain settles with Visa and Mastercard every day, including weekends and holidays",
             "Compliance first — every Rain-issued program includes KYC and AML workflows by default"
           ]},
           { type: "quote", text: "Mainstream adoption happens when the underlying technology becomes invisible. We built Lydian to make spending digital assets feel as familiar as tapping a card at your favorite local shop.", attr: "Carl Grimstad, CEO of Lydian" },
@@ -678,7 +678,7 @@ const modules = [
         content: [
           { type: "prose", text: "A stablecoin is a digital asset whose value is pegged one-to-one to a fiat currency — typically the US dollar. The most widely used are <strong>USDC</strong>, <strong>USDT</strong> (Tether), and <strong>USDG</strong>. Holding $1 of USDC is always worth $1." },
           { type: "prose", text: "Stablecoins exist on blockchain networks — decentralized, always-on digital ledgers. Unlike a bank transfer, a stablecoin transaction doesn't require banking hours, correspondent banks, or multi-day clearing windows. A transfer can settle in minutes, 24/7, including weekends and holidays." },
-          { type: "callout", variant: "green", label: "Why this matters for Rain", body: "Rain uses stablecoins to settle with the Visa network every single day — including weekends and holidays. Traditional fiat card programs settle over 1-2 business days and require companies to hold 3-5 days of spending volume in reserve. Rain's daily settlement dramatically reduces capital requirements for partners." },
+          { type: "callout", variant: "green", label: "Why this matters for Rain", body: "Rain uses stablecoins to settle with Visa and Mastercard every single day — including weekends and holidays. Traditional fiat card programs settle over 1-2 business days and require companies to hold 3-5 days of spending volume in reserve. Rain's daily settlement dramatically reduces capital requirements for partners." },
         ]
       },
       {
@@ -703,8 +703,8 @@ const modules = [
         heading: "What stablecoins cannot do on their own",
         content: [
           { type: "prose", text: "This is a critical concept. Stablecoins are excellent for holding and moving dollar-denominated value. But most people and businesses can't spend a stablecoin at a grocery store, pay a utility bill, or buy a flight." },
-          { type: "prose", text: "That's exactly the problem Rain solves. Rain connects stablecoin balances to the Visa network — accepted at over 150 million merchants worldwide. When a cardholder taps their Rain-issued card, their stablecoin balance funds the transaction, and the merchant receives fiat exactly as they always do." },
-          { type: "callout", variant: "pink", label: "CX talking point", body: "When a customer asks 'is this a crypto card?' — the accurate answer is: it is a Visa card. The cardholder spends in dollars. The merchant receives fiat as normal. The stablecoin infrastructure is entirely in the background." },
+          { type: "prose", text: "That's exactly the problem Rain solves. Rain connects stablecoin balances to the Visa and Mastercard networks — accepted at hundreds of millions of merchants across 210+ countries. When a cardholder taps their Rain-issued card, their stablecoin balance funds the transaction, and the merchant receives fiat exactly as they always do." },
+          { type: "callout", variant: "pink", label: "CX talking point", body: "When a customer asks 'is this a crypto card?' — the accurate answer is: it is a Visa or Mastercard card. The cardholder spends in dollars. The merchant receives fiat as normal. The stablecoin infrastructure is entirely in the background." },
         ]
       }
     ],
@@ -724,7 +724,7 @@ const modules = [
         content: [
           { type: "prose", text: "Before explaining how Rain is different, it helps to understand how a standard card program is built. Three key components are involved:" },
           { type: "table", headers: ["Component", "What it does"], rows: [
-            ["Card network (e.g., Visa)", "Sets the rules. Maintains global acceptance infrastructure. Handles authorization routing and settlement between issuers and merchants."],
+            ["Card network (e.g., Visa, Mastercard)", "Sets the rules. Maintains global acceptance infrastructure. Handles authorization routing and settlement between issuers and merchants."],
             ["BIN sponsor / issuing bank", "Every card has a Bank Identification Number (BIN) — the first 6-8 digits. The BIN is assigned to a licensed network member. In traditional programs, this is a bank."],
             ["Program manager", "The intermediary between the business launching the card and the BIN sponsor. Handles technical integration, card management, branding, and day-to-day ops."]
           ]},
@@ -733,9 +733,9 @@ const modules = [
       {
         heading: "Where Rain fits",
         content: [
-          { type: "prose", text: "<strong>Traditional program:</strong> Business → Program Manager → BIN Sponsor (bank) → Visa" },
-          { type: "prose", text: "<strong>With Rain:</strong> Business → Rain → Visa" },
-          { type: "prose", text: "Because Rain is a Visa Principal Member, Rain can act as the BIN sponsor directly — eliminating the need for a separate issuing bank and, in many cases, the separate program manager. This is what allows Rain to launch programs faster and operate across multiple geographies through a single integration." },
+          { type: "prose", text: "<strong>Traditional program:</strong> Business → Program Manager → BIN Sponsor (bank) → Visa or Mastercard" },
+          { type: "prose", text: "<strong>With Rain:</strong> Business → Rain → Visa or Mastercard" },
+          { type: "prose", text: "Because Rain holds Principal Membership with both Visa and Mastercard, Rain can act as the BIN sponsor directly on either network — eliminating the need for a separate issuing bank and, in many cases, the separate program manager. Rain is the only stablecoin infrastructure provider with this dual-network capability." },
           { type: "callout", variant: "blue", label: "Why fewer intermediaries matter", body: "Each intermediary adds time, cost, and a separate compliance review. Traditional programs can take 6-18 months to launch. Rain programs typically launch in 8-12 weeks. For partners, this is one of Rain's most compelling value propositions." },
         ]
       },
@@ -745,11 +745,12 @@ const modules = [
           { type: "prose", text: "Settlement is the process of moving money from the cardholder's account to the merchant. Here's how it works in Rain's model:" },
           { type: "numbered", items: [
             "A cardholder swipes or taps their Rain-issued card.",
-            "The transaction is authorized in real time on the Visa network.",
+            "The transaction is authorized in real time on the Visa or Mastercard network.",
             "The cardholder's stablecoin balance (e.g., USDC) is debited.",
-            "Rain settles with Visa in stablecoins — every day, including weekends and holidays.",
-            "The merchant receives fiat currency through the normal Visa settlement process. They see no difference from any other Visa transaction."
+            "Rain settles with the card network in stablecoins — every day, including weekends and holidays.",
+            "The merchant receives fiat currency through the normal network settlement process. They see no difference from any other card transaction."
           ]},
+          { type: "callout", variant: "green", label: "What's next: onchain settlement with Mastercard", body: "Rain and Mastercard are exploring settling select program flows onchain using regulated stablecoins. Once implemented, this would enable even more frequent, always-on settlement beyond the current daily cadence — further reducing capital requirements for partners while keeping the cardholder experience exactly the same." },
         ]
       },
       {
@@ -757,7 +758,7 @@ const modules = [
         content: [
           { type: "bullets", items: [
             "Virtual cards: issued instantly, can be added to Apple Pay and Google Wallet, ideal for online or remote use",
-            "Physical cards: available in supported regions, fully customizable with partner branding, work at any Visa POS terminal"
+            "Physical cards: available in supported regions, fully customizable with partner branding, work at any Visa or Mastercard POS terminal"
           ]},
         ]
       },
@@ -793,7 +794,7 @@ const modules = [
         content: [
           { type: "prose", text: "Many of Rain's partners come from traditional fintech backgrounds. They've launched or considered fiat card programs and are evaluating whether Rain's stablecoin model is worth the switch. Your ability to explain the structural differences — clearly and accurately — is essential in partner-facing conversations." },
           { type: "table", headers: ["Feature", "Fiat program", "Rain stablecoin program"], rows: [
-            ["Network acceptance", "Visa", "Visa"],
+            ["Network acceptance", "Visa or Mastercard", "Visa and Mastercard ✓"],
             ["Settlement timing", "T+1 to T+2, business days only", "Daily — including weekends & holidays ✓"],
             ["Collateral required", "3-5 days of spending volume", "Significantly lower ✓"],
             ["Speed to market", "6-18 months", "8-12 weeks ✓"],
@@ -828,11 +829,11 @@ const modules = [
         heading: "What stays exactly the same",
         content: [
           { type: "checks", items: [
-            "The cardholder experience is identical. Tap, swipe, checkout — exactly as any Visa card.",
+            "The cardholder experience is identical. Tap, swipe, checkout — exactly as any Visa or Mastercard.",
             "Merchants are completely unaffected. They receive fiat, use the same POS systems, see no change.",
             "Compliance obligations are the same. KYC, AML, fraud monitoring — all apply equally.",
             "Consumer protections are the same.",
-            "The card network is the same: Visa."
+            "Rain now offers dual-network choice: Visa and Mastercard."
           ]},
           { type: "callout", variant: "amber", label: "A common misconception to address", body: "Some partners initially assume that using stablecoins creates regulatory complexity or that their cardholders will need to understand crypto. Neither is true. The stablecoin infrastructure is entirely behind the scenes. Partners and cardholders interact with a normal Visa card program." },
         ]
@@ -883,11 +884,11 @@ const modules = [
         heading: "Cards",
         content: [
           { type: "bullets", items: [
-            "Physical and virtual cards through the same API",
+            "Physical and virtual cards on both Visa and Mastercard networks through the same API",
             "Fully customizable branding for partner programs",
             "Spend controls and authorization logic (merchant category restrictions, limits, single-use cards)",
             "Apple Pay and Google Wallet compatibility",
-            "Works at 150+ million Visa-accepted merchants worldwide"
+            "Visa accepted at 150+ million merchants worldwide; Mastercard accepted at hundreds of millions of merchants across 210+ countries"
           ]},
         ]
       },
@@ -929,7 +930,15 @@ const modules = [
       {
         heading: "Multichain support",
         content: [
-          { type: "prose", text: "Rain is the only Visa Principal Member that allows partners to launch and manage programs across multiple blockchains simultaneously. Supported networks include: <strong>Ethereum, Solana, Stellar, Base, Arbitrum, Optimism, Avalanche, Plasma,</strong> and more. Rain's protocol engineers design and audit smart contracts for each new chain, with regular third-party audits to maintain security." },
+          { type: "prose", text: "Rain is the only stablecoin infrastructure provider with dual Principal Membership across Visa and Mastercard, and allows partners to launch and manage programs across multiple blockchains simultaneously. Supported networks include: <strong>Ethereum, Solana, Stellar, Base, Arbitrum, Optimism, Avalanche, Plasma,</strong> and more. Rain's protocol engineers design and audit smart contracts for each new chain, with regular third-party audits to maintain security." },
+        ]
+      },
+      {
+        heading: "Rain's scale: Series C and global expansion",
+        content: [
+          { type: "prose", text: "Rain raised a <strong>$250M Series C</strong> to accelerate network integrations, international expansion, and new products that make stablecoin payments work everywhere. Rain has recently expanded into the Asia-Pacific region and is actively growing its global footprint." },
+          { type: "prose", text: "Rain is also a launch partner in the <strong>Mastercard Crypto Partner Program</strong>, which brings together innovators across the digital assets ecosystem to advance onchain payments. Through the program, Rain and Mastercard will collaborate to explore new integrations, co-develop payment capabilities, and expand real-world stablecoin use cases." },
+          { type: "callout", variant: "blue", label: "Why this matters for CX teams", body: "When partners ask about Rain's scale, stability, or roadmap — these are concrete signals: $250M raised, dual Visa and Mastercard Principal Membership, active expansion into APAC, and a formal collaboration with Mastercard on the future of onchain payments." },
         ]
       },
       {
@@ -1043,14 +1052,15 @@ const modules = [
         heading: "Common questions and clear answers",
         content: [
           { type: "table", headers: ["Question", "Clear answer"], rows: [
-            ["Is this a crypto card?", "No. It is a Visa card. Cardholder spends in dollars. Merchant receives fiat as normal. Stablecoin infrastructure is entirely in the background."],
+            ["Is this a crypto card?", "No. It is a Visa or Mastercard. Cardholder spends in dollars. Merchant receives fiat as normal. Stablecoin infrastructure is entirely in the background."],
             ["Is Rain a bank? Are my funds FDIC insured?", "Rain is a fintech company, not a bank. Rain does not hold deposits directly or provide FDIC insurance. Do not confirm FDIC coverage without checking the specific partner program."],
             ["Why do I need to verify my identity?", "All financial products in the markets we operate require identity verification. This is a legal requirement — not unique to Rain or stablecoin programs."],
             ["Why did my transaction decline?", "Check the decline code. Common reasons: insufficient balance, merchant category restriction, fraud detection, or card controls set by cardholder or partner."],
             ["How long does funding take?", "ACH: 1-3 business days. Wire/SWIFT: may be faster. Stablecoin deposits (USDC, USDT, USDG): settle in minutes."],
-            ["Can I use this internationally?", "Yes. Rain-issued cards operate on the Visa network — accepted at 150+ million merchants in 150+ countries."],
+            ["Can I use this internationally?", "Yes. Rain-issued cards operate on Visa and Mastercard — accepted at hundreds of millions of merchants across 210+ countries."],
             ["What are Raindrops / rewards?", "Raindrops are loyalty perks managed by Uptop (a Rain company). Not cash, not crypto, not deposit funds. Redemption terms vary by program."],
-            ["Does Rain store my crypto?", "Rain holds stablecoins (digital dollars) on behalf of program participants. These are not volatile cryptocurrencies. Program funds are held in custodial or non-custodial accounts depending on partner configuration."]
+            ["Does Rain store my crypto?", "Rain holds stablecoins (digital dollars) on behalf of program participants. These are not volatile cryptocurrencies. Program funds are held in custodial or non-custodial accounts depending on partner configuration."],
+            ["Is Rain on Mastercard now too?", "Yes — as of May 2026, Rain holds Principal Membership with both Visa and Mastercard. Partners can now launch programs on either network. Rain is the only stablecoin infrastructure provider with dual Principal Membership."]
           ]},
         ]
       },
@@ -1071,7 +1081,7 @@ const modules = [
           { type: "table", headers: ["Term", "Plain-language definition"], rows: [
             ["Stablecoin", "A digital asset pegged 1:1 to the US dollar. $1 of stablecoin = $1 always."],
             ["USDC / USDT / USDG", "The most widely used dollar stablecoins. All backed 1:1 by USD. Rain supports all three."],
-            ["BIN", "Bank Identification Number — the first 6-8 digits of a card. Identifies the issuer. Rain holds its own BIN."],
+            ["BIN", "Bank Identification Number — the first 6-8 digits of a card. Identifies the issuer. Rain holds its own BIN on both Visa and Mastercard."],
             ["FBO account", "For Benefit Of — a pooled account held by the issuer on behalf of cardholders. Traditional programs require large FBO balances. Rain's daily settlement reduces this."],
             ["KYC / KYB", "Know Your Customer / Know Your Business. Identity verification required at onboarding."],
             ["AML", "Anti-Money Laundering. Ongoing monitoring of transactions for suspicious activity."],
@@ -1080,7 +1090,9 @@ const modules = [
             ["Offramp", "Process of converting stablecoin balances back to fiat or cash."],
             ["Uptop", "A Rain company. Powers the rewards and loyalty layer (Raindrops) for Rain card programs."],
             ["Rain Spend", "Rain's direct corporate card product. Users sign up at use.rain.xyz — no partner intermediary."],
-            ["Visa Principal Member", "A direct Visa network member. Rain holds this status directly, without relying on a separate bank."],
+            ["Principal Member", "A direct network member — Rain holds this status with both Visa and Mastercard, without relying on a separate bank."],
+            ["Mastercard Crypto Partner Program", "A Mastercard initiative bringing together digital asset innovators. Rain is a launch partner, collaborating with Mastercard on onchain payment capabilities."],
+            ["Series C", "Rain raised $250M in a Series C round to fund network integrations, global expansion, and new product development."],
             ["SOC 2", "Security certification Rain holds — confirms systems meet standards for security, availability, confidentiality."]
           ]},
         ]
@@ -1093,7 +1105,7 @@ const modules = [
             "Partners are building businesses on Rain. Their urgency is your urgency.",
             "End users may not know Rain by name. Represent Rain through the quality of your service.",
             "Compliance is non-negotiable. Escalate anything touching sanctions, fraud, or AML immediately.",
-            "Describe the product as a Visa card unless the customer specifically asks about the underlying infrastructure.",
+            "Describe the product as a Visa or Mastercard depending on the program — not as a crypto card.",
             "When in doubt, escalate. A slow-but-correct escalation beats a fast-but-wrong answer."
           ]},
         ]
@@ -1355,7 +1367,7 @@ Their response: "${answer}"
 Please give feedback.`;
 
   try {
-    const response = await fetch('/.netlify/functions/feedback', {
+    const response = await fetch('/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
