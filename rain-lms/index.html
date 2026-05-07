@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rain Learn — CX Certification Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #ff2eba;
+  --pink-dim: rgba(255,46,186,0.10);
+  --pink-border: rgba(255,46,186,0.28);
+  --black: #121212;
+  --surface: #1a1a1a;
+  --surface2: #222222;
+  --surface3: #2c2c2c;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --white: #ffffff;
+  --muted: rgba(255,255,255,0.4);
+  --muted2: rgba(255,255,255,0.65);
+  --green: #00e5a0;
+  --amber: #f5a623;
+  --red: #ff4757;
+  --blue: #3d9eff;
+  --purple: #c084fc;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh;}
+
+/* LAYOUT */
+.layout{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:216px;min-width:216px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;}
+.sidebar-logo{padding:22px 18px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.logo-img{height:20px;width:auto;display:block;}
+.logo-meta{display:flex;flex-direction:column;gap:1px;}
+.logo-word{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--white);letter-spacing:-0.01em;line-height:1;}
+.logo-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;}
+.sidebar-section{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.14em;color:var(--muted);text-transform:uppercase;padding:18px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 18px;color:var(--muted2);font-size:13px;cursor:pointer;border-left:2px solid transparent;transition:all 0.12s;}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:var(--white);}
+.nav-item.active{color:var(--pink);border-left-color:var(--pink);background:var(--pink-dim);}
+.nav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.5;flex-shrink:0;}
+.nav-item.active .nav-dot{opacity:1;}
+.sidebar-footer{margin-top:auto;padding:14px 18px;border-top:1px solid var(--border);}
+.sidebar-footer-text{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);line-height:1.8;}
+.sidebar-version{font-size:9px;font-family:'DM Mono',monospace;padding:3px 8px;border-radius:4px;border:1px solid var(--border2);color:var(--muted);display:inline-block;margin-bottom:6px;}
+
+/* MAIN */
+.main{margin-left:216px;flex:1;display:flex;flex-direction:column;min-height:100vh;}
+
+/* TOPBAR */
+.topbar{height:54px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 26px;gap:12px;position:sticky;top:0;z-index:50;}
+.page-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:-0.01em;flex:1;}
+.live-badge{font-family:'DM Mono',monospace;font-size:9px;padding:3px 9px;border-radius:99px;border:1px solid var(--pink-border);color:var(--pink);background:var(--pink-dim);letter-spacing:0.07em;display:flex;align-items:center;gap:5px;}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--pink);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* CONTENT */
+.content{padding:26px;flex:1;}
+.section{display:none;}
+.section.active{display:block;animation:fadeUp 0.2s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTION HEADINGS */
+.section-heading{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;letter-spacing:-0.03em;margin-bottom:4px;}
+.section-heading span{color:var(--pink);}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:22px;font-weight:300;max-width:680px;}
+.accent-line{width:28px;height:2px;background:var(--pink);border-radius:2px;margin-bottom:14px;}
+
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 17px;}
+.stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;margin-bottom:7px;}
+.stat-value{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-0.03em;line-height:1;}
+.stat-delta{font-size:11px;margin-top:4px;font-weight:300;}
+.delta-up{color:var(--green);}
+.delta-down{color:var(--red);}
+.delta-neutral{color:var(--muted);}
+
+/* GRID LAYOUTS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.seg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.measure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+.principle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.card-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+.card-sub{font-size:11px;color:var(--muted);margin-bottom:12px;}
+
+/* TIER TABLE */
+.tier-grid{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.tier-header-row{display:grid;grid-template-columns:110px 1fr 130px 175px 1fr;background:var(--surface2);padding:9px 18px;}
+.tier-col-head{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;}
+.tier-row{display:grid;grid-template-columns:110px 1fr 130px 175px 1fr;background:var(--surface);padding:15px 18px;border-top:1px solid var(--border);transition:background 0.12s;cursor:default;}
+.tier-row:hover{background:var(--surface2);}
+.tier-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:99px;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.06em;border:1px solid;}
+.badge-pre{color:var(--blue);border-color:rgba(61,158,255,0.3);background:rgba(61,158,255,0.1);}
+.badge-t1{color:var(--green);border-color:rgba(0,229,160,0.3);background:rgba(0,229,160,0.1);}
+.badge-t2{color:var(--amber);border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.1);}
+.badge-t3{color:#ff7b54;border-color:rgba(255,123,84,0.3);background:rgba(255,123,84,0.1);}
+.badge-t4{color:var(--pink);border-color:var(--pink-border);background:var(--pink-dim);}
+.tier-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px;}
+.tier-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+.tier-cell{font-size:12px;color:var(--muted2);padding-top:2px;}
+.tier-tag-sm{display:inline-block;font-size:9px;padding:1px 7px;border-radius:4px;background:var(--surface3);color:var(--muted);margin-top:4px;font-family:'DM Mono',monospace;}
+.pill-row{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;}
+.pill{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.06em;padding:2px 7px;border-radius:4px;border:1px solid var(--border2);color:var(--muted);text-transform:uppercase;}
+
+/* PATH CARDS */
+.path-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.path-header{padding:14px 16px;border-bottom:1px solid var(--border);}
+.path-body{padding:12px 16px;display:flex;flex-direction:column;gap:5px;}
+.mini-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.09em;padding:2px 7px;border-radius:3px;border:1px solid var(--border2);color:var(--muted);text-transform:uppercase;display:inline-block;margin-bottom:5px;}
+.path-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;}
+.path-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.sub-head{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin:7px 0 3px;}
+.mod-row{display:flex;align-items:flex-start;gap:7px;}
+.mod-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+.mod-text{font-size:11px;color:var(--muted2);line-height:1.5;flex:1;}
+.mod-type{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);padding:1px 5px;border-radius:3px;border:1px solid var(--border);flex-shrink:0;margin-top:2px;}
+
+/* TRIGGER ROWS */
+.trigger-row{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.trigger-row:last-child{border-bottom:none;padding-bottom:0;}
+.trigger-dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.trigger-title{font-size:12px;font-weight:500;color:var(--white);margin-bottom:2px;}
+.trigger-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* HEALTH SCORE SECTION */
+.health-section{display:grid;grid-template-columns:280px 1fr;gap:14px;margin-bottom:18px;}
+.donut-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;align-items:center;}
+.donut-wrap{position:relative;width:130px;height:130px;margin:10px 0;}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.donut-score{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--white);line-height:1;}
+.donut-label{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;}
+.donut-legend{display:flex;flex-direction:column;gap:5px;width:100%;margin-top:7px;}
+.legend-row{display:flex;align-items:center;gap:7px;font-size:11px;}
+.legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.legend-label{color:var(--muted2);flex:1;}
+.legend-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+
+/* SCORE BARS */
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.score-label{font-size:12px;color:var(--muted2);width:190px;flex-shrink:0;}
+.bar-track{flex:1;height:5px;background:var(--surface3);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;}
+.score-pct{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;min-width:30px;text-align:right;}
+
+/* TABLE */
+.dash-shell{background:var(--surface2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.dash-top{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.dash-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;}
+.dash-sub{font-size:11px;color:var(--muted);}
+.status-pills{display:flex;gap:7px;flex-wrap:wrap;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--surface3);}
+th{padding:9px 15px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;text-align:left;font-weight:400;}
+td{padding:11px 15px;font-size:12px;color:var(--muted2);border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.agent-name{color:var(--white);font-weight:500;font-size:13px;}
+.inline-bar{display:flex;align-items:center;gap:7px;}
+.tbar{width:56px;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;flex-shrink:0;}
+.tfill{height:100%;border-radius:2px;}
+
+/* STATUS PILLS */
+.status-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.06em;padding:3px 8px;border-radius:99px;border:1px solid;}
+.sp-green{color:var(--green);border-color:rgba(0,229,160,0.3);background:rgba(0,229,160,0.08);}
+.sp-amber{color:var(--amber);border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.08);}
+.sp-red{color:var(--red);border-color:rgba(255,71,87,0.3);background:rgba(255,71,87,0.08);}
+.sp-blue{color:var(--blue);border-color:rgba(61,158,255,0.3);background:rgba(61,158,255,0.08);}
+.sp-pink{color:var(--pink);border-color:var(--pink-border);background:var(--pink-dim);}
+
+/* CONTENT EFFECTIVENESS */
+.eff-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px;}
+.eff-row:last-child{border-bottom:none;}
+.eff-label{color:var(--muted2);}
+.eff-delta{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;}
+
+/* SEG CARDS */
+.seg-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;}
+.seg-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+.seg-sub{font-size:11px;color:var(--muted);margin-bottom:12px;}
+.seg-row{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:12px;color:var(--muted2);}
+.seg-arrow{color:var(--pink);flex-shrink:0;font-size:11px;margin-top:2px;}
+
+/* MEASUREMENT */
+.measure-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:17px;}
+.measure-icon{font-size:18px;margin-bottom:10px;display:block;}
+.measure-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:3px;}
+.measure-sub{font-size:11px;color:var(--muted);margin-bottom:12px;}
+.measure-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:11px;border-bottom:1px solid var(--border);}
+.measure-row:last-child{border-bottom:none;}
+.measure-key{color:var(--muted2);}
+.measure-tag{font-family:'DM Mono',monospace;font-size:8px;padding:2px 6px;border-radius:3px;letter-spacing:0.05em;}
+.tag-blue{background:rgba(61,158,255,0.1);color:var(--blue);}
+.tag-green{background:rgba(0,229,160,0.1);color:var(--green);}
+.tag-amber{background:rgba(245,166,35,0.1);color:var(--amber);}
+
+/* LOOP */
+.loop-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.loop-steps{display:flex;flex-direction:column;}
+.loop-step{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--border);}
+.loop-step:last-child{border-bottom:none;padding-bottom:0;}
+.loop-num{width:22px;height:22px;border-radius:50%;background:var(--pink-dim);border:1px solid var(--pink-border);color:var(--pink);font-family:'DM Mono',monospace;font-size:10px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.loop-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:2px;}
+.loop-text{font-size:11px;color:var(--muted);line-height:1.6;}
+
+/* PRINCIPLE CARDS */
+.principle-card{background:var(--surface3);border-radius:8px;padding:11px;}
+.principle-title{font-size:12px;font-weight:500;color:var(--white);margin-bottom:3px;}
+.principle-text{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* HIGHLIGHT BOX */
+.highlight-box{border-radius:10px;padding:16px;border:1px solid;margin-top:16px;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <img class="logo-img" src="data:image/png;base64,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" alt="Rain">
+    <div class="logo-meta">
+      <div class="logo-word">Learn</div>
+      <div class="logo-tag">CX Platform</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">Main</div>
+  <div class="nav-item active" onclick="show('overview')"><div class="nav-dot"></div>Overview</div>
+  <div class="nav-item" onclick="show('tiers')"><div class="nav-dot"></div>Tier Structure</div>
+  <div class="nav-item" onclick="show('paths')"><div class="nav-dot"></div>Learning Paths</div>
+  <div class="nav-item" onclick="show('certification')"><div class="nav-dot"></div>Certification</div>
+  <div class="nav-item" onclick="show('segmentation')"><div class="nav-dot"></div>Segmentation</div>
+  <div class="nav-item" onclick="show('reporting')"><div class="nav-dot"></div>Reporting</div>
+  <div class="nav-item" onclick="show('measurement')"><div class="nav-dot"></div>Measurement</div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-version">v1.0.0</div>
+    <div class="sidebar-footer-text">WorkRamp + Zendesk<br>AutoQA integration</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="page-title" id="page-title">System Overview</div>
+    <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ── OVERVIEW ── -->
+    <div id="overview" class="section active">
+      <div class="accent-line"></div>
+      <div class="section-heading">CX <span>Learning System</span></div>
+      <div class="section-sub">A living infrastructure — not a one-time program. Onboard, certify, evaluate, and improve continuously at any team size.</div>
+
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-label">Active agents</div><div class="stat-value" style="color:var(--pink);">24</div><div class="stat-delta delta-up">↑ 4 vs last quarter</div></div>
+        <div class="stat-card"><div class="stat-label">Cert. rate</div><div class="stat-value" style="color:var(--green);">91%</div><div class="stat-delta delta-up">↑ 3pp vs last cycle</div></div>
+        <div class="stat-card"><div class="stat-label">Below threshold</div><div class="stat-value" style="color:var(--red);">2</div><div class="stat-delta delta-down">Remediation active</div></div>
+        <div class="stat-card"><div class="stat-label">Fatal errors (30d)</div><div class="stat-value" style="color:var(--amber);">1</div><div class="stat-delta delta-neutral">Module issued</div></div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">Five system components</div>
+          <div class="card-sub">Each operates independently and together — onboarding feeds tiers, tiers set standards QA measures against</div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--pink);"></div><div><div class="trigger-title">Onboarding</div><div class="trigger-desc">3-week LMS curriculum → Pre-T1 nesting. Universal for Rain employees and Horatio BPO agents.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--blue);"></div><div><div class="trigger-title">Tier structure</div><div class="trigger-desc">Pre-T1 through T4. Time gates, QA benchmarks, and performance assessments govern every advancement.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--green);"></div><div><div class="trigger-title">QA-driven content loop</div><div class="trigger-desc">Every performance dip becomes a content input. Gap → diagnose → build → deliver → recheck. Never exits.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--amber);"></div><div><div class="trigger-title">Continuous recertification</div><div class="trigger-desc">Certification is an ongoing state powered by a live health score — not a periodic test.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--purple);"></div><div><div class="trigger-title">Reporting & analytics</div><div class="trigger-desc">Single LMS view. Always current. Agent scorecard, team dashboard, content effectiveness.</div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Data flow</div>
+          <div class="card-sub">How the system operates at runtime without manual intervention</div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px;">
+            <div style="background:var(--surface3);border-radius:8px;padding:11px 13px;border-left:2px solid var(--pink);">
+              <div style="font-size:11px;font-weight:500;color:var(--white);margin-bottom:1px;">Zendesk AutoQA</div>
+              <div style="font-size:11px;color:var(--muted);">Scores every ticket → feeds health score via API integration</div>
+            </div>
+            <div style="text-align:center;font-size:14px;color:var(--muted);">↓</div>
+            <div style="background:var(--surface3);border-radius:8px;padding:11px 13px;border-left:2px solid var(--blue);">
+              <div style="font-size:11px;font-weight:500;color:var(--white);margin-bottom:1px;">WorkRamp LMS</div>
+              <div style="font-size:11px;color:var(--muted);">Aggregates QA + learning activity → single composite health score per agent</div>
+            </div>
+            <div style="text-align:center;font-size:14px;color:var(--muted);">↓</div>
+            <div style="background:var(--surface3);border-radius:8px;padding:11px 13px;border-left:2px solid var(--green);">
+              <div style="font-size:11px;font-weight:500;color:var(--white);margin-bottom:1px;">Analytics Studio</div>
+              <div style="font-size:11px;color:var(--muted);">Agent scorecard · Team dashboard · Content effectiveness report</div>
+            </div>
+            <div style="text-align:center;font-size:14px;color:var(--muted);">↓</div>
+            <div style="background:var(--surface3);border-radius:8px;padding:11px 13px;border-left:2px solid var(--amber);">
+              <div style="font-size:11px;font-weight:500;color:var(--white);margin-bottom:1px;">Auto-triggered actions</div>
+              <div style="font-size:11px;color:var(--muted);">Remediation · Fatal error suspension · Coaching alerts · Advancement flags</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TIERS ── -->
+    <div id="tiers" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading">Tier <span>Structure</span></div>
+      <div class="section-sub">Five levels from supervised trainee through specialist. Each tier has a time gate, QA benchmark, and a performance assessment that must be passed.</div>
+      <div class="tier-grid">
+        <div class="tier-header-row">
+          <div class="tier-col-head">Level</div>
+          <div class="tier-col-head">Description</div>
+          <div class="tier-col-head">Min. time</div>
+          <div class="tier-col-head">QA benchmark</div>
+          <div class="tier-col-head">Certification gate</div>
+        </div>
+        <div class="tier-row">
+          <div><span class="tier-badge badge-pre">Pre-T1</span></div>
+          <div><div class="tier-name">Nesting</div><div class="tier-desc">Supervised trainee handling limited contact types with direct supervisor support during 4-week nesting period</div><div class="pill-row"><span class="pill">Observation only</span><span class="pill">Shadow queue</span></div></div>
+          <div class="tier-cell">N/A — entry after onboarding</div>
+          <div class="tier-cell">QA observation only<br><span class="tier-tag-sm">No threshold required</span></div>
+          <div class="tier-cell">Complete 3-week onboarding curriculum on LMS</div>
+        </div>
+        <div class="tier-row">
+          <div><span class="tier-badge badge-t1">T1</span></div>
+          <div><div class="tier-name">Foundational</div><div class="tier-desc">Handles routine, well-defined contact types independently without supervisor oversight</div><div class="pill-row"><span class="pill">Independent queue</span><span class="pill">Routine contacts</span></div></div>
+          <div class="tier-cell">4 weeks at Pre-T1</div>
+          <div class="tier-cell">85% sustained<br><span class="tier-tag-sm">During nesting period</span></div>
+          <div class="tier-cell">Pass T1 performance assessment</div>
+        </div>
+        <div class="tier-row">
+          <div><span class="tier-badge badge-t2">T2</span></div>
+          <div><div class="tier-name">Proficient</div><div class="tier-desc">Handles moderate complexity contacts independently with sound judgment. Zero fatal errors required.</div><div class="pill-row"><span class="pill">Complex queue</span><span class="pill">No fatal errors</span></div></div>
+          <div class="tier-cell">3 months at T1</div>
+          <div class="tier-cell">88% + zero fatal errors<br><span class="tier-tag-sm">During T1 period</span></div>
+          <div class="tier-cell">Pass T2 performance assessment</div>
+        </div>
+        <div class="tier-row">
+          <div><span class="tier-badge badge-t3">T3</span></div>
+          <div><div class="tier-name">Advanced</div><div class="tier-desc">Handles escalations and edge cases; carries peer support responsibilities. 9+ months certified tenure required.</div><div class="pill-row"><span class="pill">Escalation authority</span><span class="pill">Peer support</span></div></div>
+          <div class="tier-cell">6 months at T2</div>
+          <div class="tier-cell">93% on complex tickets<br><span class="tier-tag-sm">During T2 period</span></div>
+          <div class="tier-cell">Pass T3 performance assessment</div>
+        </div>
+        <div class="tier-row">
+          <div><span class="tier-badge badge-t4">T4</span></div>
+          <div><div class="tier-name">Specialist</div><div class="tier-desc">Regulatory, high-value, or highly technical contacts. Scales as Rain's product and partner base expands.</div><div class="pill-row"><span class="pill">Specialist queue</span><span class="pill">Manager endorsed</span></div></div>
+          <div class="tier-cell">6–12 months at T3</div>
+          <div class="tier-cell">95%+ on specialist types<br><span class="tier-tag-sm">Sustained</span></div>
+          <div class="tier-cell">Pass T4 assessment + manager sign-off</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="border-color:var(--pink-border);background:var(--pink-dim);">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.14em;color:var(--pink);text-transform:uppercase;margin-bottom:6px;">Escalation authority threshold — T3</div>
+        <div style="font-size:12px;color:var(--muted2);line-height:1.7;">An agent reaching T3 has passed three successive performance assessments, sustained a minimum of 9 months certified tenure, demonstrated 93% QA specifically on complex contacts at T2, and carried zero fatal errors in their T2 review window. Escalation authority is tied to tier progression — not seniority or tenure alone.</div>
+      </div>
+    </div>
+
+    <!-- ── PATHS ── -->
+    <div id="paths" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading">Learning <span>Paths</span></div>
+      <div class="section-sub">Each path is a sequenced LMS track. Onboarding is universal. Tier paths unlock after passing the previous level's assessment.</div>
+      <div class="paths-grid">
+
+        <div class="path-card">
+          <div class="path-header"><div class="mini-tag">Onboarding → Pre-T1</div><div class="path-name">Core foundations</div><div class="path-meta">3 weeks · All agents · Rain + Horatio</div></div>
+          <div class="path-body">
+            <div class="sub-head">Week 1 — Rain's world</div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">What Rain is, B2B2C model, partner archetypes</span><span class="mod-type">Read + video</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Product suite: accounts, cards, money movement</span><span class="mod-type">Interactive</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Technical landscape (conceptual)</span><span class="mod-type">Read</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Compliance basics: KYC, KYB, AML</span><span class="mod-type">Read + quiz</span></div>
+            <div class="sub-head">Week 2 — Ticket deep dives</div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Integration & technical issues</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Card program operations</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Money movement & settlement</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Compliance & KYC/KYB/AML</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Reporting, finance & incidents</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Agentic commerce (awareness)</span><span class="mod-type">Read</span></div>
+            <div class="sub-head">Week 3 — Skills & process</div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Escalation frameworks + P1/P2/P3 triage</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Partner communication standards</span><span class="mod-type">Practice</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Tooling, workflow & ticket tagging</span><span class="mod-type">Interactive</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#555;"></div><span class="mod-text">Judgment calibration scenarios</span><span class="mod-type">Scenario</span></div>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header" style="border-left:2px solid var(--green);"><div class="mini-tag">T1 — Foundational</div><div class="path-name">Foundational proficiency</div><div class="path-meta">Unlocks after Pre-T1 · 85% QA gate</div></div>
+          <div class="path-body">
+            <div class="sub-head">Required modules</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">Routine contact handling in Zendesk</span><span class="mod-type">Interactive</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">T1 ticket category mastery review</span><span class="mod-type">Read + quiz</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">When to escalate vs. resolve</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">SLA and response time standards</span><span class="mod-type">Read</span></div>
+            <div class="sub-head">Microlearning cadence (ongoing)</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">Weekly / bi-weekly product updates</span><span class="mod-type">Micro</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">QA-driven remediation modules</span><span class="mod-type">Triggered</span></div>
+            <div class="sub-head">Assessment</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--green);"></div><span class="mod-text">T1 branching scenario assessment (auto-scored)</span><span class="mod-type">Auto-scored</span></div>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header" style="border-left:2px solid var(--amber);"><div class="mini-tag">T2 — Proficient</div><div class="path-name">Proficient complexity</div><div class="path-meta">Unlocks after T1 cert · 88% + zero fatal errors</div></div>
+          <div class="path-body">
+            <div class="sub-head">Required modules</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Multi-factor issue diagnosis</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Advanced settlement & FX triage</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Escalation writing for engineering</span><span class="mod-type">Practice</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Compliance intake: edge cases</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Partner communication: technical contacts</span><span class="mod-type">Practice</span></div>
+            <div class="sub-head">Microlearning cadence (ongoing)</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">Weekly / bi-weekly product updates</span><span class="mod-type">Micro</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">QA-driven remediation modules</span><span class="mod-type">Triggered</span></div>
+            <div class="sub-head">Assessment</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--amber);"></div><span class="mod-text">T2 branching scenario assessment (auto-scored)</span><span class="mod-type">Auto-scored</span></div>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header" style="border-left:2px solid #ff7b54;"><div class="mini-tag">T3 — Advanced</div><div class="path-name">Advanced + escalation</div><div class="path-meta">Unlocks after T2 cert · 93% on complex tickets</div></div>
+          <div class="path-body">
+            <div class="sub-head">Required modules</div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">P1/P2/P3 triage and incident ownership</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">Escalation authority and limits</span><span class="mod-type">Read + quiz</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">Peer coaching and QA feedback delivery</span><span class="mod-type">Practice</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">High-stakes partner communication</span><span class="mod-type">Practice</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">Compliance escalation without liability</span><span class="mod-type">Scenario</span></div>
+            <div class="sub-head">Assessment</div>
+            <div class="mod-row"><div class="mod-dot" style="background:#ff7b54;"></div><span class="mod-text">T3 branching scenario assessment (auto-scored)</span><span class="mod-type">Auto-scored</span></div>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header" style="border-left:2px solid var(--pink);"><div class="mini-tag">T4 — Specialist</div><div class="path-name">Specialist</div><div class="path-meta">6–12 months at T3 · Manager endorsement required</div></div>
+          <div class="path-body">
+            <div class="sub-head">Required modules</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--pink);"></div><span class="mod-text">Regulatory contact handling</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--pink);"></div><span class="mod-text">High-value partner escalations</span><span class="mod-type">Scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--pink);"></div><span class="mod-text">Advanced agentic commerce</span><span class="mod-type">Read + scenario</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--pink);"></div><span class="mod-text">Specialist contact types (modular as needed)</span><span class="mod-type">Modular</span></div>
+            <div class="sub-head">Assessment</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--pink);"></div><span class="mod-text">T4 scenario assessment + manager review</span><span class="mod-type">Hybrid</span></div>
+          </div>
+        </div>
+
+        <div class="path-card">
+          <div class="path-header" style="border-left:2px solid var(--blue);"><div class="mini-tag">All tiers — ongoing</div><div class="path-name">Continuous microlearning</div><div class="path-meta">Runs in parallel with all tier paths · Always-on</div></div>
+          <div class="path-body">
+            <div class="sub-head">Scheduled delivery</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Product & policy change updates</span><span class="mod-type">Triggered</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Weekly / bi-weekly micro modules</span><span class="mod-type">Scheduled</span></div>
+            <div class="sub-head">QA-driven remediation</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Auto-assigned on health score &lt; 80%</span><span class="mod-type">Auto</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Fatal error remediation (immediate)</span><span class="mod-type">Triggered</span></div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Product/policy change (5-day window)</span><span class="mod-type">Required</span></div>
+            <div class="sub-head">Feeds into</div>
+            <div class="mod-row"><div class="mod-dot" style="background:var(--blue);"></div><span class="mod-text">Certification health score (20% weight)</span><span class="mod-type">Live</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── CERTIFICATION ── -->
+    <div id="certification" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading"><span>Certification</span> Structure</div>
+      <div class="section-sub">Certification is a continuous state — not a periodic test. The health score reflects active standing at all times and feeds all triggering events automatically.</div>
+
+      <div class="two-col" style="margin-bottom:12px;">
+        <div class="card">
+          <div class="card-title">Health score composition</div>
+          <div class="card-sub">Weighted composite · Live via WorkRamp Analytics Studio + Zendesk API</div>
+          <div class="score-row">
+            <div class="score-label">QA rolling average (Zendesk AutoQA)</div>
+            <div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--pink);"></div></div>
+            <div class="score-pct" style="color:var(--pink);">70%</div>
+          </div>
+          <div class="score-row">
+            <div class="score-label">Microlearning assessment scores</div>
+            <div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--blue);"></div></div>
+            <div class="score-pct" style="color:var(--blue);">20%</div>
+          </div>
+          <div class="score-row" style="margin-bottom:14px;">
+            <div class="score-label">Module completion rate</div>
+            <div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--green);"></div></div>
+            <div class="score-pct" style="color:var(--green);">10%</div>
+          </div>
+          <div style="background:var(--surface3);border-radius:8px;padding:11px 13px;border-left:2px solid var(--pink);">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--pink);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px;">Active certification threshold</div>
+            <div style="font-size:12px;color:var(--muted2);">Health score must remain <strong style="color:var(--white);">≥ 80%</strong> for certification to stay active. Below 80% triggers the remediation loop automatically.</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Triggering events</div>
+          <div class="card-sub">Events that activate automatic LMS actions — no manual intervention required</div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--amber);"></div><div><div class="trigger-title">Score below threshold</div><div class="trigger-desc">Auto-assigns targeted remediation module based on the specific failing scorecard criterion. Coaching triggered if score doesn't recover.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--red);"></div><div><div class="trigger-title">QA fatal error</div><div class="trigger-desc">Immediate module assigned. Queue suspended until passed. Team lead auto-notified in LMS on both assignment and completion.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--green);"></div><div><div class="trigger-title">Product or policy change</div><div class="trigger-desc">Required update module issued with a 5-business-day window. Non-completion flags agent as non-compliant and suspends certification.</div></div></div>
+          <div class="trigger-row"><div class="trigger-dot" style="background:var(--blue);"></div><div><div class="trigger-title">Tier advancement eligibility</div><div class="trigger-desc">LMS surfaces readiness automatically when time and QA gates are met. No manual audit or manager review needed to flag.</div></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Assessment design principles</div>
+        <div class="card-sub">All performance assessments are branching simulations — not knowledge tests. Built in Articulate Storyline or natively in LMS. Path is scored, not just the final answer.</div>
+        <div class="principle-grid">
+          <div class="principle-card"><div class="principle-title">Branching scenarios</div><div class="principle-text">Agent decisions branch to new situations. The path taken is scored — mirrors how real interactions unfold and where judgment actually matters.</div></div>
+          <div class="principle-card"><div class="principle-title">Auto-scored</div><div class="principle-text">No human review required. Scales to any cohort size. Attempt limits and wait periods enforced automatically by the LMS.</div></div>
+          <div class="principle-card"><div class="principle-title">Scenario bank</div><div class="principle-text">No two agents receive identical assessments. The library expands with new contact types and edge cases as Rain scales. Resistant to answer-sharing.</div></div>
+          <div class="principle-card"><div class="principle-title">Guardrails</div><div class="principle-text">Defined wait period between attempts and a max attempt count. Once exceeded, a remediation path is auto-triggered before the agent can retry.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SEGMENTATION ── -->
+    <div id="segmentation" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading">Team <span>Segmentation</span></div>
+      <div class="section-sub">Same LMS infrastructure for every segment. Content, routing, and dashboard access differ — the underlying system does not.</div>
+      <div class="seg-grid">
+        <div class="seg-card">
+          <div class="seg-title">By employment type</div>
+          <div class="seg-sub">Rain employees vs. Horatio BPO agents</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Same onboarding curriculum and LMS delivery for both groups</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Horatio in separate LMS org or group — manager dashboard filterable by team</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Rain-only content (internal systems, compensation) gated from Horatio view</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Tier progression, health score, and certification apply identically to both</div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-title">By tier</div>
+          <div class="seg-sub">Pre-T1 through T4</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Learning paths unlock sequentially — T3 content not visible at T1</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Microlearning modules tagged by tier; delivery filtered to relevant level</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>QA benchmarks and remediation thresholds calibrated per tier</div>
+          <div class="seg-row"><span class="seg-arrow">→</span>Advancement eligibility surfaced automatically when gates are met</div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-title">By contact type</div>
+          <div class="seg-sub">Routing determines ticket assignment per tier</div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--green);">T1</strong> — Routine, well-defined contacts only</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--amber);">T2</strong> — Moderate complexity, multi-factor issues</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:#ff7b54;">T3</strong> — Escalations, edge cases, incidents</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--pink);">T4</strong> — Regulatory, high-value, specialist types</span></div>
+        </div>
+        <div class="seg-card">
+          <div class="seg-title">By role (dashboard access)</div>
+          <div class="seg-sub">What each role sees in the LMS — all in one view</div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--muted2);">Agent</strong> — Own health score + open assignments only</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--muted2);">Manager</strong> — Full team dashboard, all scores, flags, tier eligibility</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span><span><strong style="color:var(--muted2);">Leadership</strong> — Cross-team aggregate, effectiveness, system trends</span></div>
+          <div class="seg-row"><span class="seg-arrow">→</span>All views in a single LMS — no system toggling required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── REPORTING ── -->
+    <div id="reporting" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading">Reporting &amp; <span>Dashboards</span></div>
+      <div class="section-sub">Three reports. All self-serve, all live. Everything aggregated in WorkRamp Analytics Studio — QA scores from Zendesk, learning activity from LMS, in one view.</div>
+
+      <div class="health-section">
+        <div class="donut-card">
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-bottom:2px;">Agent health score</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:2px;">A. Osei · T3</div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 130 130" width="130" height="130">
+              <circle cx="65" cy="65" r="50" fill="none" stroke="#2a2a2a" stroke-width="11"/>
+              <circle cx="65" cy="65" r="50" fill="none" stroke="#ff2eba" stroke-width="11" stroke-dasharray="220 94" stroke-dashoffset="78.5" stroke-linecap="round"/>
+              <circle cx="65" cy="65" r="50" fill="none" stroke="#3d9eff" stroke-width="11" stroke-dasharray="62.8 251" stroke-dashoffset="-141.5" stroke-linecap="round"/>
+              <circle cx="65" cy="65" r="50" fill="none" stroke="#00e5a0" stroke-width="11" stroke-dasharray="31.4 283" stroke-dashoffset="-204.3" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center">
+              <div class="donut-score">94</div>
+              <div class="donut-label">health</div>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div class="legend-row"><div class="legend-dot" style="background:var(--pink);"></div><div class="legend-label">QA rolling avg.</div><div class="legend-pct">70%</div></div>
+            <div class="legend-row"><div class="legend-dot" style="background:var(--blue);"></div><div class="legend-label">Microlearning</div><div class="legend-pct">20%</div></div>
+            <div class="legend-row"><div class="legend-dot" style="background:var(--green);"></div><div class="legend-label">Completion rate</div><div class="legend-pct">10%</div></div>
+          </div>
+          <div style="width:100%;background:var(--surface3);border-radius:6px;padding:9px;text-align:center;margin-top:10px;">
+            <span class="status-pill sp-green">● In good standing</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="three-col">
+            <div class="stat-card"><div class="stat-label">QA average</div><div class="stat-value" style="font-size:20px;color:var(--green);">93%</div><div class="stat-delta delta-up">↑ 4pp this month</div></div>
+            <div class="stat-card"><div class="stat-label">Modules done</div><div class="stat-value" style="font-size:20px;color:var(--blue);">18/20</div><div class="stat-delta delta-neutral">2 in progress</div></div>
+            <div class="stat-card"><div class="stat-label">Current tier</div><div class="stat-value" style="font-size:20px;color:#ff7b54;">T3</div><div class="stat-delta delta-neutral">Advanced</div></div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="card-title">Content effectiveness (last 30d)</div>
+            <div class="card-sub">QA score delta post-module completion · flags content for redesign when delta &lt; 3pp</div>
+            <div class="eff-row"><div class="eff-label">Settlement triage module</div><div class="eff-delta" style="color:var(--green);">+8pp QA improvement</div></div>
+            <div class="eff-row"><div class="eff-label">KYB intake module</div><div class="eff-delta" style="color:var(--green);">+5pp QA improvement</div></div>
+            <div class="eff-row"><div class="eff-label">Compliance documentation</div><div class="eff-delta" style="color:var(--green);">+4pp QA improvement</div></div>
+            <div class="eff-row"><div class="eff-label">Escalation writing (T2)</div><div class="eff-delta" style="color:var(--red);">+1pp — flagged for redesign ⚑</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-shell">
+        <div class="dash-top">
+          <div><div class="dash-title">Team certification dashboard</div><div class="dash-sub">Manager view · Live · WorkRamp + Zendesk API</div></div>
+          <div class="status-pills">
+            <span class="status-pill sp-green">● 4 good standing</span>
+            <span class="status-pill sp-amber">● 1 approaching</span>
+            <span class="status-pill sp-red">● 2 below threshold</span>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>Agent</th><th>Tier</th><th>Health score</th><th>QA avg.</th><th>Microlearning</th><th>Status</th><th>Open assignments</th></tr></thead>
+          <tbody>
+            <tr><td><span class="agent-name">A. Osei</span></td><td><span class="tier-badge badge-t3" style="font-size:9px;padding:2px 8px;">T3</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:94%;background:var(--green);"></div></div><span style="color:var(--green);font-family:'DM Mono',monospace;font-size:11px;">94</span></div></td><td style="color:var(--green);">93%</td><td>97%</td><td><span class="status-pill sp-green">● Good standing</span></td><td style="color:var(--muted);">—</td></tr>
+            <tr><td><span class="agent-name">P. Lim</span></td><td><span class="tier-badge badge-t2" style="font-size:9px;padding:2px 8px;">T2</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:88%;background:var(--green);"></div></div><span style="color:var(--green);font-family:'DM Mono',monospace;font-size:11px;">88</span></div></td><td style="color:var(--green);">87%</td><td>93%</td><td><span class="status-pill sp-green">● Good standing</span></td><td style="color:var(--muted);">—</td></tr>
+            <tr><td><span class="agent-name">M. Torres</span></td><td><span class="tier-badge badge-t2" style="font-size:9px;padding:2px 8px;">T2</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:83%;background:var(--green);"></div></div><span style="color:var(--green);font-family:'DM Mono',monospace;font-size:11px;">83</span></div></td><td style="color:var(--amber);">82%</td><td>88%</td><td><span class="status-pill sp-amber">● Approaching threshold</span></td><td style="color:var(--amber);">1 micro module</td></tr>
+            <tr><td><span class="agent-name">R. Patel</span></td><td><span class="tier-badge badge-t1" style="font-size:9px;padding:2px 8px;">T1</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:76%;background:var(--amber);"></div></div><span style="color:var(--amber);font-family:'DM Mono',monospace;font-size:11px;">76</span></div></td><td style="color:var(--red);">74%</td><td>82%</td><td><span class="status-pill sp-red">● Below threshold</span></td><td style="color:var(--red);">1 remediation</td></tr>
+            <tr><td><span class="agent-name">C. Nwosu</span></td><td><span class="tier-badge badge-t1" style="font-size:9px;padding:2px 8px;">T1</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:71%;background:var(--red);"></div></div><span style="color:var(--red);font-family:'DM Mono',monospace;font-size:11px;">71</span></div></td><td style="color:var(--red);">69%</td><td>80%</td><td><span class="status-pill sp-red">● Fatal error · Suspended</span></td><td style="color:var(--red);">1 fatal error module</td></tr>
+            <tr><td><span class="agent-name">J. Bauer</span></td><td><span class="tier-badge badge-pre" style="font-size:9px;padding:2px 8px;">Pre-T1</span></td><td><div class="inline-bar"><div class="tbar"><div class="tfill" style="width:85%;background:var(--green);"></div></div><span style="color:var(--green);font-family:'DM Mono',monospace;font-size:11px;">85</span></div></td><td style="color:var(--green);">85%</td><td>90%</td><td><span class="status-pill sp-blue">↑ T1 eligible</span></td><td style="color:var(--blue);">T1 assessment ready</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── MEASUREMENT ── -->
+    <div id="measurement" class="section">
+      <div class="accent-line"></div>
+      <div class="section-heading"><span>Measurement</span> Framework</div>
+      <div class="section-sub">Three signal layers — adoption, effectiveness, and impact — each measured by different data sources and owned by different audiences.</div>
+
+      <div class="measure-grid">
+        <div class="measure-card">
+          <span class="measure-icon" style="color:var(--blue);">◎</span>
+          <div class="measure-title" style="color:var(--blue);">Adoption</div>
+          <div class="measure-sub">Are agents completing what's assigned?</div>
+          <div class="measure-row"><span class="measure-key">Module completion rate</span><span class="measure-tag tag-blue">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Time to complete onboarding</span><span class="measure-tag tag-blue">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Overdue assignment count</span><span class="measure-tag tag-blue">LMS flag</span></div>
+          <div class="measure-row"><span class="measure-key">Remediation completion rate</span><span class="measure-tag tag-blue">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Product update compliance rate</span><span class="measure-tag tag-blue">LMS flag</span></div>
+          <div class="measure-row"><span class="measure-key">Attempt rate per assessment</span><span class="measure-tag tag-blue">LMS auto</span></div>
+        </div>
+        <div class="measure-card">
+          <span class="measure-icon" style="color:var(--green);">↗</span>
+          <div class="measure-title" style="color:var(--green);">Effectiveness</div>
+          <div class="measure-sub">Is learning changing QA performance?</div>
+          <div class="measure-row"><span class="measure-key">QA score delta post-module</span><span class="measure-tag tag-green">Content report</span></div>
+          <div class="measure-row"><span class="measure-key">Remediation recovery rate</span><span class="measure-tag tag-green">Content report</span></div>
+          <div class="measure-row"><span class="measure-key">Fatal error recurrence rate</span><span class="measure-tag tag-green">QA + LMS</span></div>
+          <div class="measure-row"><span class="measure-key">Assessment pass rate by tier</span><span class="measure-tag tag-green">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Avg. attempts to pass</span><span class="measure-tag tag-green">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Health score trend (team avg.)</span><span class="measure-tag tag-green">LMS auto</span></div>
+        </div>
+        <div class="measure-card">
+          <span class="measure-icon" style="color:var(--amber);">◈</span>
+          <div class="measure-title" style="color:var(--amber);">Impact</div>
+          <div class="measure-sub">Is the system moving the right metrics?</div>
+          <div class="measure-row"><span class="measure-key">Team-wide QA average over time</span><span class="measure-tag tag-amber">QA + LMS</span></div>
+          <div class="measure-row"><span class="measure-key">Tier advancement velocity</span><span class="measure-tag tag-amber">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Escalation rate at T1/T2</span><span class="measure-tag tag-amber">Zendesk</span></div>
+          <div class="measure-row"><span class="measure-key">T0 deflection rate over time</span><span class="measure-tag tag-amber">Zendesk</span></div>
+          <div class="measure-row"><span class="measure-key">Time-to-T1 certification</span><span class="measure-tag tag-amber">LMS auto</span></div>
+          <div class="measure-row"><span class="measure-key">Ramp time vs. QA performance</span><span class="measure-tag tag-amber">Combined</span></div>
+        </div>
+      </div>
+
+      <div class="loop-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div><div class="card-title">QA-driven content loop</div><div class="card-sub">Runs continuously without manual intervention — every performance dip becomes a system input</div></div>
+          <div class="live-badge" style="font-size:8px;"><div class="live-dot"></div>AUTO</div>
+        </div>
+        <div class="loop-steps">
+          <div class="loop-step"><div class="loop-num">1</div><div><div class="loop-title">QA drop detected</div><div class="loop-text">AutoQA or manual score falls below threshold on a specific scorecard criterion — for one agent or as a pattern across the team.</div></div></div>
+          <div class="loop-step"><div class="loop-num">2</div><div><div class="loop-title">Gap diagnosed</div><div class="loop-text">The failing criterion maps to a content category — escalation writing, KYB intake, settlement triage, partner communication, etc.</div></div></div>
+          <div class="loop-step"><div class="loop-num">3</div><div><div class="loop-title">Content assigned or built</div><div class="loop-text">Existing reusable inventory is checked first. If no match, a targeted module is developed and added to the library for future use.</div></div></div>
+          <div class="loop-step"><div class="loop-num">4</div><div><div class="loop-title">Targeted delivery</div><div class="loop-text">Module assigned to the specific agent or group where the gap exists. Not broadcast to the entire team — targeted, not scattered.</div></div></div>
+          <div class="loop-step"><div class="loop-num">5</div><div><div class="loop-title">QA rechecked</div><div class="loop-text">Next QA cycle evaluates whether the criterion score recovers. Content effectiveness report records the delta for every module.</div></div></div>
+          <div class="loop-step"><div class="loop-num">6</div><div><div class="loop-title">Loop continues</div><div class="loop-text">If score holds, monitoring continues. If content shows less than 3pp improvement, it is flagged for redesign in the effectiveness report — not recycled.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</div>
+
+<script>
+const titles = {overview:'System Overview',tiers:'Tier Structure',paths:'Learning Paths',certification:'Certification',segmentation:'Segmentation',reporting:'Reporting & Dashboards',measurement:'Measurement'};
+const navKeys = Object.keys(titles);
+
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('page-title').textContent = titles[id];
+  document.querySelectorAll('.nav-item')[navKeys.indexOf(id)].classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
