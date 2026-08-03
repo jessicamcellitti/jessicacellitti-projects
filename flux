@@ -1619,8 +1619,8 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
     <div class="ph-desc">The human-authored knowledge layer for flux. Lives alongside engineering's sources. Everything in The Grid starts here.</div>
   </div>
   <div class="view-toggle">
-    <button class="vt on" id="vt-author" onclick="setView('author')">Author view</button>
-    <button class="vt" id="vt-read" onclick="setView('read')">Read view</button>
+    <button class="vt on" id="vt-author" onclick="cuSetView('author')">Author view</button>
+    <button class="vt" id="vt-read" onclick="cuSetView('read')">Read view</button>
   </div>
 </div>
 
@@ -3198,7 +3198,7 @@ function toggleEntry(id){
   document.getElementById('entry-'+id)?.classList.toggle('open');
 }
 
-function setView(v){
+function cuSetView(v){
   cuViewMode = v;
   document.getElementById('vt-author').classList.toggle('on',v==='author');
   document.getElementById('vt-read').classList.toggle('on',v==='read');
