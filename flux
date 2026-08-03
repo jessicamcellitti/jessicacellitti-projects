@@ -25,7 +25,6 @@ html,body{height:100%;overflow:hidden;font-family:'DM Sans',sans-serif}
 .mobile-nav-btn{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;color:#9B948C;background:none;border:none;border-bottom:0.5px solid #2C2926;padding:10px 0;cursor:pointer;text-align:left;transition:color 0.2s;width:100%}
 .mobile-nav-btn:hover,.mobile-nav-btn.active{color:#F5F0E8}
 .mobile-nav-label{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;color:#9B948C;margin-bottom:16px}
-@media(max-width:768px){.hamburger{display:flex}}
 
 :root{
   --pitch:#141210;--surface:#191714;--edge:#2C2926;
@@ -297,45 +296,6 @@ nav{height:52px;display:flex;align-items:center;padding:0 36px;border-bottom:0.5
 
 @keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-@media(max-width:768px){
-  html,body{height:auto;overflow:auto}
-  .main{
-    grid-template-columns:1fr;
-    height:auto;
-    overflow:visible;
-  }
-  .left{
-    padding:32px 24px;
-    border-right:none;
-    border-bottom:0.5px solid var(--edge);
-    min-height:auto;
-  }
-  .left-glow{display:none}
-  .hero-title{font-size:clamp(36px,10vw,56px)}
-  .right{
-    padding:28px 24px;
-    overflow-y:visible;
-    height:auto;
-  }
-  .sources{grid-template-columns:1fr}
-  .prod-modes{
-    grid-template-columns:1fr;
-    gap:8px;
-  }
-  .prod-divider{display:none}
-  .prod-mode{padding:8px 0}
-  .pulse-grid{grid-template-columns:1fr}
-  .dist-pair{flex-direction:column;align-items:flex-start;gap:6px}
-  .dist-pair-label{text-align:left;width:auto}
-  .dist-pair-row{grid-template-columns:1fr;width:100%}
-  .layers{gap:6px}
-  .ltag{font-size:13px;padding:6px 12px}
-  .cta{flex-direction:column;align-items:flex-start}
-  .btn-t,.btn-e{width:100%;text-align:center;justify-content:center}
-  .tour-card{padding:28px 24px}
-  .t-title{font-size:20px}
-  nav{padding:0 20px}
-}
 .right::-webkit-scrollbar{width:4px}
 .right::-webkit-scrollbar-track{background:var(--canvas)}
 .right::-webkit-scrollbar-thumb{background:var(--rule);border-radius:2px}
@@ -851,26 +811,6 @@ select.active{border-color:var(--ember);color:var(--carbon);background-color:rgb
 .mobile-nav-link:hover,.mobile-nav-link.active{color:var(--parchment)}
 .mobile-nav-label{font-size:11px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);margin-bottom:16px}
 
-@media(max-width:768px){
-  .hamburger{display:flex;margin-left:auto}
-  .nav-links,.nav-div{display:none!important}
-  nav{padding:0 20px;gap:10px}
-  .nav-links{display:none}
-  .nav-div{display:none}
-  .toolbar{padding:12px 20px;gap:6px}
-  select{font-size:12px;padding:5px 24px 5px 10px}
-  .grid-area{padding:16px 20px}
-  .card-grid{grid-template-columns:1fr}
-  .stats-bar{padding:8px 20px}
-  .modal-overlay{padding:16px 0 0;align-items:flex-start;justify-content:center}
-  .modal{border-radius:16px;margin:0 8px}
-  .modal-header{padding:24px 24px 18px;border-radius:16px 16px 0 0}
-  .modal-title{font-size:22px}
-  .modal-body{padding:20px 24px 32px}
-  .vh-item{grid-template-columns:40px 80px 1fr}
-  .lc-date{display:none}
-  .toast{bottom:0;right:0;left:0;max-width:none;border-radius:10px 10px 0 0}
-}
 
 
 :root{
@@ -1105,20 +1045,6 @@ nav{
 .mobile-nav-label{font-size:11px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);margin-bottom:16px}
 
 /* MOBILE */
-@media(max-width:768px){
-  nav{padding:0 20px}
-  .nav-links{display:none!important}
-  .nav-div{display:none!important}
-  .hamburger{display:flex;margin-left:auto}
-  .page-header{padding:16px 20px}
-  .search-bar{padding:12px 20px}
-  .kfilters{margin-left:0;width:100%}
-  .doc-area{padding:20px 16px}
-  .entry-header{padding:18px 20px 14px}
-  .entry-body{padding:0 20px 20px}
-  .entry-title{font-size:20px}
-  .primer{padding:20px 22px}
-}
 
 
 :root{
@@ -1296,18 +1222,67 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
 .mobile-nav-label{font-size:11px;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);margin-bottom:16px}
 
 /* MOBILE */
-@media(max-width:768px){
-  nav{padding:0 20px}
-  .nav-links{display:none!important}
-  .nav-div{display:none!important}
-  .hamburger{display:flex;margin-left:auto}
-  .page-header{padding:16px 20px}
-  .dash{padding:16px 20px}
-  .row-4,.row-3,.row-2,.row-2-1,.row-1-2,.kpi-row{grid-template-columns:1fr}
-  .health-grid{grid-template-columns:1fr}
-}
 
-</style>
+
+@media(max-width:768px){
+  html,body{height:auto!important;overflow-y:auto!important;overflow-x:hidden!important}
+  .page{height:auto!important;min-height:100vh;overflow:visible!important}
+  .page.active{display:flex!important;flex-direction:column}
+  /* Homepage */
+  .main{grid-template-columns:1fr!important;height:auto!important;overflow:visible!important}
+  .left{padding:32px 24px;border-right:none;border-bottom:0.5px solid var(--edge);min-height:auto}
+  .left-glow{display:none}
+  .hero-title{font-size:clamp(36px,10vw,56px)}
+  .right{padding:28px 24px;overflow-y:visible;height:auto}
+  .sources{grid-template-columns:1fr}
+  .prod-modes{grid-template-columns:1fr;gap:8px}
+  .prod-divider{display:none}
+  .prod-mode{padding:8px 0}
+  .pulse-grid{grid-template-columns:1fr}
+  .dist-pair{flex-direction:column;align-items:flex-start;gap:6px}
+  .dist-pair-label{text-align:left;width:auto}
+  .dist-pair-row{grid-template-columns:1fr;width:100%}
+  .layers{gap:6px}
+  .ltag{font-size:13px;padding:6px 12px}
+  .cta{flex-direction:column;align-items:flex-start}
+  .btn-t,.btn-e{width:100%;text-align:center}
+  .tour-card{padding:28px 24px}
+  .t-title{font-size:20px}
+  /* Shared nav */
+  nav{padding:0 20px!important;gap:10px}
+  .hamburger{display:flex}
+  .nav-links{display:none!important}
+  .nav-r{margin-left:auto}
+  .nav-div{display:none!important}
+  /* Grid */
+  .toolbar{padding:12px 20px;gap:6px;flex-wrap:wrap}
+  select{font-size:12px;padding:5px 24px 5px 10px}
+  .grid-area{padding:16px 20px}
+  .card-grid{grid-template-columns:1fr}
+  .stats-bar{padding:8px 20px}
+  .modal-overlay{padding:16px 0 0;align-items:flex-start}
+  .modal{border-radius:16px;margin:0 8px}
+  .modal-header{padding:24px 24px 18px;border-radius:16px 16px 0 0}
+  .modal-title{font-size:22px}
+  .modal-body{padding:20px 24px 32px}
+  .vh-item{grid-template-columns:40px 80px 1fr}
+  .lc-date{display:none}
+  /* Current */
+  .page-header{padding:16px 20px;flex-wrap:wrap}
+  .search-bar{padding:12px 20px}
+  .kfilters{margin-left:0;width:100%}
+  .doc-area{padding:20px 16px}
+  .entry-header{padding:18px 20px 14px}
+  .entry-body{padding:0 20px 20px}
+  .entry-title{font-size:20px}
+  .primer{padding:20px 22px}
+  /* Pulse */
+  .dash{padding:16px 20px}
+  .row-4,.row-3,.row-2,.row-2-1,.row-1-2,.kpi-row{grid-template-columns:1fr!important}
+  .health-grid{grid-template-columns:1fr}
+  /* Toast */
+  #globalToast{bottom:0;right:0;left:0;max-width:none;border-radius:10px 10px 0 0}
+}</style>
 </head>
 <body>
 
@@ -1374,7 +1349,7 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
         <div class="src"><div class="src-t">Product docs</div><div class="src-s">API · technical · versioned</div></div>
       </div>
       <div class="conn"><div class="conn-arrow">↓</div></div>
-      <div class="lnode lnode-dark">
+      <div class="lnode lnode-dark" onclick="navigate('current')" style="cursor:pointer">
         <div class="lnode-ey">layer 01 · owned by learning</div>
         <div class="lnode-t">The Current</div>
         <div class="lnode-d">human-authored source of truth · translated · contextualized</div>
@@ -1443,7 +1418,7 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
 
     <div class="conn"><div class="conn-arrow">↓</div></div>
 
-    <div class="pulse-node">
+    <div class="pulse-node" onclick="navigate('pulse')" style="cursor:pointer">
       <div class="lnode-ey">layer 03</div>
       <div class="lnode-t">The Pulse</div>
       <div class="lnode-d" style="margin-bottom:14px">analytics and tracking for the whole system</div>
@@ -1496,13 +1471,13 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
 
 <nav>
   <a href="#" onclick="navigate('home');return false" class="wm" title="back to overview">flu<span>x</span></a>
+  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
   <div class="nav-div"></div>
   <div class="nav-links">
     <a class="nl" href="#" onclick="navigate('current');return false">the current</a>
     <a class="nl active" href="#">the grid</a>
     <a class="nl" href="#" onclick="navigate('pulse');return false">the pulse</a>
   </div>
-  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
 
   <div style="margin-left:auto"><button class="sync-btn" onclick="handleGlobalSync()">↻ sync</button></div>
 </nav>
@@ -1627,13 +1602,13 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
 
 <nav>
   <a href="#" onclick="navigate('home');return false" class="wm">flu<span>x</span></a>
+  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
   <div class="nav-div"></div>
   <div class="nav-links">
     <a class="nl active" href="#">the current</a>
     <a class="nl" href="#" onclick="navigate('grid');return false">the grid</a>
     <a class="nl" href="#" onclick="navigate('pulse');return false">the pulse</a>
   </div>
-  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
 
   <div style="margin-left:auto"><button class="sync-btn" onclick="handleGlobalSync()">↻ sync</button></div>
 </nav>
@@ -1681,13 +1656,13 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
 
 <nav>
   <a href="#" onclick="navigate('home');return false" class="wm">flu<span>x</span></a>
+  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
   <div class="nav-div"></div>
   <div class="nav-links">
     <a class="nl" href="#" onclick="navigate('current');return false">the current</a>
     <a class="nl" href="#" onclick="navigate('grid');return false">the grid</a>
     <a class="nl active" href="#">the pulse</a>
   </div>
-  <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
 
   <div style="margin-left:auto"><button class="sync-btn" onclick="handleGlobalSync()">↻ sync</button></div>
 </nav>
