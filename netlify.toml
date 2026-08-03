@@ -24,3 +24,8 @@
   for = "/coins-learning-strategy"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
+    
+[[headers]]
+  for = "/coins-lms"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
