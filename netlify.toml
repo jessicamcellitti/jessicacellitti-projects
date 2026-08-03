@@ -4,3 +4,18 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[headers]]
+  for = "/flux"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
+
+[[headers]]
+  for = "/rain-onboarding"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
+
+[[headers]]
+  for = "/coins-onboarding"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
