@@ -1281,7 +1281,12 @@ nav{height:54px;display:flex;align-items:center;padding:0 36px;background:var(--
   .row-4,.row-3,.row-2,.row-2-1,.row-1-2,.kpi-row{grid-template-columns:1fr!important}
   .health-grid{grid-template-columns:1fr}
   /* Toast */
-  #globalToast{bottom:0;right:0;left:0;max-width:none;border-radius:10px 10px 0 0}
+  #globalToast{bottom:0;right:0;left:0;max-width:none;border-radius:10px 10px 0 0;padding:20px 24px 32px}
+  /* Sync button - bigger tap target on mobile */
+  .sync-btn{padding:10px 16px!important;font-size:13px!important;min-height:40px}
+  /* Sync nudge */
+  .sync-nudge{right:16px;left:16px;bottom:80px;width:auto}
+  .sn-arrow{display:none}
 }</style>
 </head>
 <body>
@@ -1778,8 +1783,9 @@ function doGlobalSync(){
     btn.classList.add('syncing');
   });
   showGToast('scanning blocks...','');
-  // Animate grid cards if on grid
-  if(_pg==='grid'){
+  // Animate grid cards if on grid and not mobile
+  var isMobile = window.innerWidth <= 768;
+  if(_pg==='grid' && !isMobile){
     var cards=document.querySelectorAll('[id^="card-"]');
     var i=0;
     function scanNext(){
