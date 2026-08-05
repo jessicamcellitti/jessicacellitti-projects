@@ -29,3 +29,8 @@
   for = "/coins-lms"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
+
+    [[headers]]
+  for = "/trunk-tools-track"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
