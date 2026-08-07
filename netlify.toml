@@ -34,3 +34,8 @@
   for = "/trunk-tools-track"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
+
+  [[headers]]
+  for = "/the-score"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
