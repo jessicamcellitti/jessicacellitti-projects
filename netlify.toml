@@ -30,12 +30,17 @@
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
 
-    [[headers]]
+[[headers]]
   for = "/trunk-tools-track"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
 
-  [[headers]]
+[[headers]]
   for = "/the-score"
+  [headers.values]
+    Content-Type = "text/html; charset=UTF-8"
+
+[[headers]]
+  for = "/ai-fluency"
   [headers.values]
     Content-Type = "text/html; charset=UTF-8"
