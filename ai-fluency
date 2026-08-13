@@ -594,6 +594,9 @@ input[type=range]{width:100%;max-width:380px;accent-color:var(--surgical)}
   .case,.note-card,.item,.shape,.annot,.anout,.vers,.about,.notice,
   .banner,.ibanner,.swout,.project,.lvlnote,.worked,.seam,.deck,.fwlegend{max-width:none}
 }
+
+.byline{margin:10px 0 0;font-family:var(--sans);font-size:12px;color:var(--slate);line-height:1.6}
+.byline a{color:var(--surgical-deep)}
 </style>
 </head>
 <body>
@@ -628,6 +631,7 @@ input[type=range]{width:100%;max-width:380px;accent-color:var(--surgical)}
     This derivative is released under the same license. Scenarios, exercise design, rubrics,
     feedback copy, adaptive routing, and measurement layer are original.
   </p>
+  <p class="byline">Built by Jessica Cellitti &middot; <a href="https://www.jessicacellitti.com" target="_blank" rel="noopener noreferrer">jessicacellitti.com</a></p>
 </div>
 </div>
 </div>
