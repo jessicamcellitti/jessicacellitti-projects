@@ -160,13 +160,14 @@
     <div class="project-row">
       <a class="project-link" href="/ai-fluency">
         <span class="project-name">AI Fluency</span>
-        <span class="project-desc">adaptive AI-literacy prototype, built for Anthropic</span>
+        <span class="project-desc">adaptive AI-literacy prototype; built for Anthropic</span>
       </a>
     </div>
 
     <div class="project-row">
       <a class="project-link" href="/coins-learning-strategy">
         <span class="project-name">Coins</span>
+        <span class="project-desc">3-part sample</span>
       </a>
       <div class="subgroup">
         <a class="sub-link" href="/coins-onboarding">
@@ -184,14 +185,14 @@
     <div class="project-row">
       <a class="project-link" href="/trunk-tools-track">
         <span class="project-name">TrunkSubmittal</span>
-        <span class="project-desc">certification track, built for Trunk Tools</span>
+        <span class="project-desc">certification track; built for Trunk Tools</span>
       </a>
     </div>
 
     <div class="project-row">
       <a class="project-link" href="/the-score">
         <span class="project-name">Conductor</span>
-        <span class="project-desc">content dashboard</span>
+        <span class="project-desc">content dashboard; built for Conductor</span>
       </a>
     </div>
 
