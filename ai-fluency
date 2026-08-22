@@ -1205,7 +1205,7 @@ function rIntake(el){
     '<aside class="intake-side">'+
     '<details class="about"><summary>About this project</summary><div class="about-in">'+
 
-      '<p class="about-lead">A prototype of a personalized AI-literacy program \u2014 one that assembles itself around who the learner is, gives them something to do rather than something to read, and measures whether the teaching worked without a knowledge check. Built to show what an open framework can become when the format is rebuilt around the learner.</p>'+
+      '<p class="about-lead">A prototype of a personalized AI-literacy program. It assembles itself around who the learner is, gives them something to do rather than something to read, and measures whether the teaching worked without asking a single recall question. Built to show what an open framework can become when the format is rebuilt around the learner.</p>'+
 
       '<details class="about-sub"><summary>What\u2019s borrowed and what\u2019s mine</summary>'+
       '<p>The framework \u2014 the four competencies of Delegation, Description, Discernment, and Diligence \u2014 comes from <em>AI Fluency: Framework and Foundations</em> by Rick Dakan, Joseph Feller, and Anthropic, licensed CC BY-NC-SA 4.0. This derivative carries the same license. Everything else is original: the scenarios, the exercise design, the feedback logic, the rubric, the adaptive routing, and the measurement layer. The source course is a series of videos and reflection prompts; this is an attempt to turn the same ideas into something you do.</p>'+
@@ -1213,14 +1213,14 @@ function rIntake(el){
 
       '<details class="about-sub"><summary>Three design decisions worth naming</summary>'+
       '<ol class="about-list">'+
-      '<li>Nothing here is scored. Every exercise responds to the specific choice you made rather than marking it right or wrong \u2014 most of these decisions have more than one defensible answer, and saying so is part of the teaching.</li>'+
-      '<li>The assessment is behavioral: whether feedback changed your next attempt, whether your confidence tracked your accuracy. A learner can define all four competencies and still use them badly.</li>'+
-      '<li>The debrief has an instructor view \u2014 the same session read as evidence about the course rather than about the person.</li>'+
+      '<li>Nothing is scored. Every exercise responds to the specific choice you made rather than marking it right or wrong, because most of these decisions have more than one defensible answer. What gets measured instead is behavior: whether feedback changed your next attempt, and whether your confidence tracked your accuracy.</li>'+
+      '<li>The debrief has two views. One reads the session back to the learner. The other reads the same session as evidence about the course rather than about the person.</li>'+
+      '<li>The words and the code are kept separate. Every scenario a persona sees lives in one editable place, so adding a fourth audience means writing new scenarios, not rebuilding the program.</li>'+
       '</ol>'+
       '</details>'+
 
       '<details class="about-sub"><summary>What\u2019s real and what isn\u2019t</summary>'+
-      '<p>The personalization, adaptive feedback, and measurement all genuinely work. Two things are deliberately simulated and labeled as such: the prompt rubric runs in your browser rather than calling a model, so the whole thing stays one file with no exposed credentials, and the PDF and email buttons explain what they would do instead of doing it. The seams are marked rather than hidden.</p>'+
+      '<p>The personalization, adaptive feedback, and measurement all work. Two things are deliberately simulated, and both say so in the interface. The prompt rubric runs in your browser rather than calling a model, which keeps the whole program in one file with no exposed credentials. The PDF and email buttons explain what they would do instead of doing it. Where the prototype stops, it tells you.</p>'+
       '</details>'+
 
     '</div></details>'+
