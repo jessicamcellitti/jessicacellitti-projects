@@ -1,3 +1,14 @@
+<!--
+  AI Fluency — a personalized learning program
+  A prototype by Jessica Cellitti · jessicacellitti.com
+
+  Course framework adapted from "AI Fluency: Framework and Foundations"
+  by Rick Dakan, Joseph Feller, and Anthropic, licensed CC BY-NC-SA 4.0.
+  This derivative is released under the same license.
+
+  Scenarios, exercise design, feedback logic, rubric, adaptive routing,
+  and the measurement layer are original.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -446,7 +457,7 @@ input[type=range]{width:100%;max-width:380px;accent-color:var(--surgical)}
   .about-list li{font-size:13.5px;line-height:1.58;color:var(--ink-soft);padding-left:4px}
   .about-sub{border-top:1px solid var(--line-soft);padding:0}
   .about-sub:last-child{border-bottom:1px solid var(--line-soft)}
-  .about-sub summary{cursor:pointer;list-style:none;padding:10px 0;font-size:13.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px;line-height:1.35}
+  .about-sub summary{cursor:pointer;list-style:none;padding:10px 0;font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink);display:flex;align-items:center;gap:7px;line-height:1.35}
   .about-sub summary::-webkit-details-marker{display:none}
   .about-sub summary::before{content:"\25B8";font-size:9px;color:var(--slate);flex-shrink:0;transition:transform .13s}
   .about-sub[open] summary::before{transform:rotate(90deg)}
@@ -597,6 +608,8 @@ input[type=range]{width:100%;max-width:380px;accent-color:var(--surgical)}
 
 .byline{margin:10px 0 0;font-family:var(--sans);font-size:12px;color:var(--slate);line-height:1.6}
 .byline a{color:var(--surgical-deep)}
+
+.about-lead{font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:2px 0 14px;padding-bottom:2px}
 </style>
 </head>
 <body>
@@ -1184,17 +1197,15 @@ function rIntake(el){
     '<div class="intake-grid">'+
     '<div class="intake-main">'+
     '<h1>This program builds itself around you</h1>'+
-    '<p class="standfirst">Two questions, then you\u2019re in. Set aside about twenty to thirty-five minutes \u2014 you\u2019ll spend most of it making actual decisions, not reading about a framework.</p>'+
+    '<p class="standfirst">Two questions, then you\u2019re in. Set aside about twenty to thirty-five minutes \u2014 you\u2019ll spend most of it making actual decisions rather than reading about them.</p>'+
     '<div class="q"><span class="label">What best describes your work?</span><div class="opts" id="o-persona"></div></div>'+
     '<div class="q"><span class="label">How much have you used AI assistants?</span><div class="opts" id="o-exp"></div></div>'+
     '<div id="intake-note"></div>'+
     '</div>'+
     '<aside class="intake-side">'+
-    '<details class="about"><summary>About this work sample</summary><div class="about-in">'+
+    '<details class="about"><summary>About this project</summary><div class="about-in">'+
 
-      '<details class="about-sub"><summary>What this is</summary>'+
-      '<p>A prototype of a personalized AI-literacy program \u2014 one that assembles itself around who the learner is, gives them something to do rather than something to read, and measures whether the teaching worked without a knowledge check. Built as a work sample for the AI Fluency Education Lead role at Anthropic.</p>'+
-      '</details>'+
+      '<p class="about-lead">A prototype of a personalized AI-literacy program \u2014 one that assembles itself around who the learner is, gives them something to do rather than something to read, and measures whether the teaching worked without a knowledge check. Built to show what an open framework can become when the format is rebuilt around the learner.</p>'+
 
       '<details class="about-sub"><summary>What\u2019s borrowed and what\u2019s mine</summary>'+
       '<p>The framework \u2014 the four competencies of Delegation, Description, Discernment, and Diligence \u2014 comes from <em>AI Fluency: Framework and Foundations</em> by Rick Dakan, Joseph Feller, and Anthropic, licensed CC BY-NC-SA 4.0. This derivative carries the same license. Everything else is original: the scenarios, the exercise design, the feedback logic, the rubric, the adaptive routing, and the measurement layer. The source course is a series of videos and reflection prompts; this is an attempt to turn the same ideas into something you do.</p>'+
